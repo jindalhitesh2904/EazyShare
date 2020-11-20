@@ -1,0 +1,34 @@
+{% extends 'basic.html' %}
+{% block title %}
+Sign Up
+{% endblock %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+
+<form class="signup" method="POST" action="">
+    {% csrf_token %}
+    <h1>Create account</h1>
+    <h2>Already have an account? <a href="{% url 'Login' %}">Sign in</a></h2>
+  
+    <div class="signup__field">
+        {{form.username.label}}
+        {{form.username}}
+    </div>
+    <div class="signup__field">
+        {{form.password1.label}}
+        {{form.password1}}
+    </div>
+    <div class="signup__field">
+        {{form.password2.label}}
+        {{form.password2}}
+    </div>
+    {{ form.errors }}
+    <button type="submit">Sign up</button>
+  </form>
+  
+  
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'basic.html' %}
+{% block title %}
+LogIn
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+<form class="signup" method="POST" action="">
+    {% csrf_token %}
+    <h1>Log In</h1>
+    <h2>Do not have an account ?<a href="{% url 'SignUp' %}">Register</a></h2>
+  
+    <div class="signup__field">
+        <input type="text" name="username" placeholder="Username" class="form-control">
+    </div>
+    <div class="signup__field">
+        <input type="password" name="password" placeholder="Password" class="form-control">
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+    {% endif %}
+  
+    <button type="submit">Sign In</button>
+  </form>
+  
+  
+{% endblock %}

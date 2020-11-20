@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rentalapp',
     'phonenumber_field',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -125,13 +126,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
     
-]
+# ]
 
 # MEDIA_ROOT= os.path.join(BASE_DIR, "media")
 # MEDIA_URL="/media/"
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
-# LOGIN_REDIRECT_URL = 'doctorHome'
+LOGIN_REDIRECT_URL = '/carrent/'
 # LOGIN_URL = 'login'

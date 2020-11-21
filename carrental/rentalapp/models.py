@@ -1,27 +1,21 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
-class Lender(models.Model):
-	first_name=models.CharField(max_length=100)
-	last_name=models.CharField(max_length=100)
-	email=models.EmailField(max_length=250)
-	phone=PhoneNumberField()
-	address=models.CharField(max_length=250)
-	age=models.IntegerField()
+class Person(models.Model):
+	user=models.OneToOneField(User,null=True,on_delete=models.CASCADE)
+	first_name=models.CharField(max_length=100,default="")
+	last_name=models.CharField(max_length=100,default="")
+	email=models.EmailField(max_length=250,null=True)
+	phone=PhoneNumberField(null=True)
+	address=models.TextField(max_length=250,default="None")
+	age=models.IntegerField(null=True)
+	profile_pic=models.ImageField(upload_to='images',default="images/iitbhu.png")
 	def __str__(self):
 		return self.first_name+self.last_name
 
-class Borrower(models.Model):
-	first_name=models.CharField(max_length=100)
-	last_name=models.CharField(max_length=100)
-	email=models.EmailField(max_length=250)
-	phone=PhoneNumberField()
-	address=models.CharField(max_length=250)
-	age=models.IntegerField()
-	def __str__(self):
-		return self.first_name+self.last_name
-	
 class Vehicle(models.Model):
 	brand_name=models.CharField(max_length=100)
 	model_name=models.CharField(max_length=100,null=True)
@@ -37,7 +31,7 @@ class Vehicle(models.Model):
 	availability_start_date=models.DateField()
 	availability_end_date=models.DateField(null=True)
 
-	owner=models.ForeignKey(Lender,on_delete=models.CASCADE)
+	owner=models.ForeignKey(Person,on_delete=models.CASCADE)
 	pickup_address=models.CharField(max_length=200,default="abcd")
 	drop_address=models.CharField(null=True,max_length=200)
 	def __str__(self):
@@ -49,7 +43,7 @@ class Bookings(models.Model):
 	end_date=models.DateField()
 	km_drove=models.IntegerField()
 	cost=models.IntegerField()
-	borrower=models.OneToOneField(Borrower,null=True,on_delete=models.CASCADE)
-	lender=models.OneToOneField(Lender,null=True,on_delete=models.CASCADE)
+	borrower=models.OneToOneField(Person,null=True,on_delete=models.CASCADE)
+	lender=models.OneToOneField(Person,null=True,on_delete=models.CASCADE,related_name='+')
 	vehicle=models.OneToOneField(Vehicle,on_delete=models.CASCADE)	
 	

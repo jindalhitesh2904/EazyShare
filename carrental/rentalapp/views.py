@@ -6,6 +6,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import CreateUserForm
 from django.contrib import messages
+from .models import Person
 # Create your views here.
 @login_required(login_url='Login')
 def home(request):
@@ -24,9 +25,18 @@ def sign_up(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user=form.save()
-            messages.success(request,'Account created successfully!')
-            login(request,user)
+            user=User.objects.create_user(username=request.POST['username'],password=request.POST['password1'])
+            phone=request.POST['phone']
+            age=request.POST['age']
+            first_name=request.POST['first_name']
+            last_name=request.POST['last_name']
+            email=request.POST['email']
+            address=request.POST['address']
+            profile_pic=request.POST['profile_pic']
+            print(first_name)
+            new_person=Person(user=user,first_name=first_name,last_name=last_name,email=email,phone=phone,address=address,age=age,profile_pic=profile_pic)
+            new_person.save()
+            login(request, user)
             context={'form':form}
             return redirect('Home')
     context={'form':form}

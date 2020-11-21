@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rentalapp',
     'phonenumber_field',
     'crispy_forms',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

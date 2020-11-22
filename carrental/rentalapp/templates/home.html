@@ -1,13 +1,133 @@
 {% extends 'basic.html' %}
 
-{% block title %}
+{%block title%}
 Home
-{% endblock %}
+{%endblock title%}
 
-{% block home_active %}
+{%block home_active%}
 active
-{% endblock %}
+{%endblock home_active%}
+
 
 {% block content %}
-<a href="{% url 'book_vehicle' %}">Book a Vehicle</a>
-{% endblock %}
+{%load static%}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<script src="{%static 'js/home.js'%}"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="{%static 'css/home.css'%}">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" /> -->
+<header id="home">
+        <div class="overlay"></div>
+        
+
+        <div class="tophead" >
+            <div class="container text-center">
+                <div class="row jhk">
+                    <div class="col-md-12 ">
+
+                        <h1 class="title-main"> 
+                            <p class="typewrite" data-period="2000" data-type='[ "Welcome To Filox", "Your Guide to Good Health" ]'>
+                                <span class="wrap"></span> </p>
+                        
+                        </h1>
+                        <h3 class="subtitle-main wow fadeInUp" data-wow-duration="1.1s">Get immediate awareness about your well being. Connect with the best specialists around you.</h3>
+						<div class="top-btn-block wow fadeInUp data-wow-duration="2.5s">
+							<a href="#overview" class="btn-explore ">Overview</a>
+							<a href="{% url 'add_vehicle' %}" class="btn btn-outline-success btn-account ">Disease Predictor</a>
+						</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+       
+    </header>
+    <main>
+        <section class="overview-wrap" id="overview">
+            <div class="container">
+                <div class="contenedor">
+                    <h2 class="title-overview wow fadeInUp">Overview</h2>
+                    <p class="subtitle-overview wow fadeInUp">This is an initiative to help both patients and doctors. If you are a patient, let us know your symptoms, we will guide you on your way to good health. You can also search for doctors and specialists of you choice near you. If you are doctor, register yourself with us. Let patients find you easily.</p>
+                    
+              <div class="row">
+
+              <div class="col-md-3 wow bounceInUp" data-wow-duration="1.4s">
+                <div class="card">
+                    <figure class="text-center">
+                        <img src="https://source.unsplash.com/yWYiNNK_tOI/940x650" class="img-fluid">
+                    </figure>
+                    <div class="card-body">
+                        <h5 class="card-title">Check out our blog!</h5>
+                        <p class="card-text">Looking for some health tips? Or perhaps a few homemade remedies? Well we have got you covered. Our health blog contains posts by doctors, so head over there now and quench your curiosity</p>
+                        <a href="" class="btn btn-success">
+                            Blog
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 wow bounceInUp" data-wow-duration="1.4s">
+                <div class="card">
+                    <figure class="text-center">
+                        <img src="{%static 'images/supportus.jpg'%}" class="img-fluid">
+                    </figure>
+                    <div class="card-body">
+                        <h5 class="card-title">Support Us</h5>
+                        <p class="card-text">We are a growing initiative. With a bit of your help, we can increase the efficiency of your predictor, gather more data and thus help you better.<br><br><br></p>
+                        <a href="" class="btn btn-success">
+                          Support
+                          </a>
+                      </div>
+                </div>
+            </div>
+
+
+                  <div class="col-md-3 wow bounceInUp" data-wow-duration="1.4s">
+                      <div class="card">
+                          <figure class="text-center">
+                              <img src="https://source.unsplash.com/yfmjALh1S6s/940x650" class="img-fluid">
+                          </figure>
+                          <div class="card-body">
+                              <h5 class="card-title">Consult A Doctor</h5>
+                              <p class="card-text">Want to consult a doctor? Head over to the consult section to know about different doctors near your area.<br><br><br></p>
+                              <a href="" class="btn btn-success">
+                                Consult
+                                </a>
+                            </div>
+                      </div>
+                  </div>
+                  <div class="col-md-3 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="card">
+                        <figure class="text-center">
+                            <img src="https://source.unsplash.com/b7Es9ZMdORo/940x650" class="img-fluid">
+                        </figure>
+                        <div class="card-body">
+                            <h5 class="card-title">Predict Your Disease</h5>
+                            <p class="card-text">Worried about your ill health. Make use of our well trained ML base disease predictor to get an accurate knowledge of the possible disease you have.<br><br></p>
+                            <a href="" class="btn btn-success">
+                              Disease Predictor
+                              </a>
+                          </div>
+                    </div>
+                </div>
+
+                         
+                  
+              </div>
+          </div>
+      </section>
+	
+
+      
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    
+{% endblock%}

@@ -8,10 +8,7 @@ from .forms import CreateUserForm,AddVehicleForm
 from django.contrib import messages
 from .models import Person,Vehicle
 # Create your views here.
-@login_required(login_url='Login')
 def home(request):
-    print(request.user.username)
-    print(Person.objects.filter(user=request.user))
     return render(request,'home.html')
 
 def about(request):
@@ -63,7 +60,7 @@ def signin(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('Login')
+    return redirect('Home')
 
 @login_required(login_url='Login')
 def book_vehicle(request):

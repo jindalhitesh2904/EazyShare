@@ -1,0 +1,21 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+<form action="" style="margin-top:100px" method="POST">
+    {% csrf_token %}
+    <input type="text" id="brand_name" name="brand_name">
+    <input type="text" id="model_name" name="model_name">
+    <input type="text" id="registration_number" name="registration_number">
+    <input type="number" id="year" name="year">
+    <input type="text" id="description" name="description">
+    <select id="category" name="category">
+    <option value="Car">Car</option>
+    <option value="Scooty">Scooty</option>
+    <option value="Motorbike">Motorbike</option>
+    </select>
+    <input type="number" id="km_driven" name="km_driven">
+    <input type="file" id="pic" name="pic" accept="image/*">
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

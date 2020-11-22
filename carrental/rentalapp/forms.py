@@ -2,7 +2,7 @@ from django import forms
 from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Person
+from .models import Person,Vehicle
 
 class CreateUserForm(UserCreationForm):
     first_name=forms.CharField(max_length=100)
@@ -16,3 +16,9 @@ class CreateUserForm(UserCreationForm):
         fields=[
             'username','first_name','last_name','email','phone','address','age','password1','password2',
         ]
+
+class AddVehicleForm(forms.Form):
+    class Meta:
+        model=Vehicle
+        exclude=['owner']
+        # fields=['brand_name','model_name','registration_number','year','description','category','km_driven','pic',]

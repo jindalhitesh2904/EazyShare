@@ -25,15 +25,9 @@ class Vehicle(models.Model):
 	category=models.CharField(max_length=20,choices=[('CAR','Car'),('SCOOTY','Scooty'),('MOTORBIKE','MotorBike')])
 	km_driven=models.PositiveIntegerField()
 
-	per_km_cost=models.PositiveIntegerField(default=12)
-	per_day_cost=models.PositiveIntegerField(default=500)
-
-	availability_start_date=models.DateField()
-	availability_end_date=models.DateField(null=True)
+	pic=models.ImageField(upload_to='images',default="images/iitbhu.png")
 
 	owner=models.ForeignKey(Person,on_delete=models.CASCADE)
-	pickup_address=models.CharField(max_length=200,default="abcd")
-	drop_address=models.CharField(null=True,max_length=200)
 	def __str__(self):
 		return self.model_name
 

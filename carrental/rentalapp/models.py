@@ -22,7 +22,7 @@ class Vehicle(models.Model):
 	registration_number=models.CharField(max_length=100,null=True)
 	year=models.IntegerField()
 	description=models.TextField()
-	category=models.CharField(max_length=20,choices=[('CAR','Car'),('SCOOTY','Scooty'),('MOTORBIKE','MotorBike')])
+	category=models.CharField(max_length=20,choices=[('Car','Car'),('Scooty','Scooty'),('Motorbike','Motorbike')])
 	km_driven=models.PositiveIntegerField()
 
 	pic=models.ImageField(upload_to='images',default="images/iitbhu.png")

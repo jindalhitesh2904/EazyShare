@@ -78,12 +78,13 @@ def add_vehicle(request):
             vehicle=Vehicle(
                 brand_name=request.POST['brand_name'],
                 model_name=request.POST['model_name'],
+                registration_number=request.POST['registration_number'],
                 year=request.POST['year'],
                 description=request.POST['description'],
                 category=request.POST['category'],
                 km_driven=request.POST['km_driven'],
                 pic=request.POST['pic'],
-                owner=Person.objects.filter(user__username=request.user.username)[0]
+                owner=Person.objects.filter(user=request.user)[0]
             )
             vehicle.save()
             context={'form':form}

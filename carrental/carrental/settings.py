@@ -70,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+
             ],
         },
     },
@@ -81,13 +83,15 @@ WSGI_APPLICATION = 'carrental.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {	
-    'default': {	   
-        'ENGINE': 'django.db.backends.mysql',	       
-        'OPTIONS': {	        
-            'read_default_file': '/etc/mysql/my.cnf',	       
-        },	       
-    }	    
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'eazyshare_database',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': 'root',
+    }
 }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -132,8 +136,8 @@ STATIC_URL = '/static/'
     
 # ]
 
-# MEDIA_ROOT= os.path.join(BASE_DIR, "media")
-# MEDIA_URL="/media/"
+MEDIA_ROOT= os.path.join(BASE_DIR, "media")
+MEDIA_URL="/media/"
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = '/carrent/'
 # LOGIN_URL = 'login'

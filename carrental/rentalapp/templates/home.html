@@ -46,85 +46,29 @@ active
         </div>
        
     </header>
-    <main id="browse_vehicles">
-        <!-- <section class="overview-wrap">
-            <div class="container">
-                <div class="contenedor">
-                    <h2 class="title-overview wow fadeInUp">Overview</h2>
-                    <p class="subtitle-overview wow fadeInUp">This is an initiative to help both patients and doctors. If you are a patient, let us know your symptoms, we will guide you on your way to good health. You can also search for doctors and specialists of you choice near you. If you are doctor, register yourself with us. Let patients find you easily.</p>
-                    
-              <div class="row">
-
-              <div class="col-md-3 wow bounceInUp" data-wow-duration="1.4s">
-                <div class="card">
-                    <figure class="text-center">
-                        <img src="https://source.unsplash.com/yWYiNNK_tOI/940x650" class="img-fluid">
-                    </figure>
-                    <div class="card-body">
-                        <h5 class="card-title">Check out our blog!</h5>
-                        <p class="card-text">Looking for some health tips? Or perhaps a few homemade remedies? Well we have got you covered. Our health blog contains posts by doctors, so head over there now and quench your curiosity</p>
-                        <a href="" class="btn btn-success">
-                            Blog
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 wow bounceInUp" data-wow-duration="1.4s">
-                <div class="card">
-                    <figure class="text-center">
-                        <img src="{%static 'images/supportus.jpg'%}" class="img-fluid">
-                    </figure>
-                    <div class="card-body">
-                        <h5 class="card-title">Support Us</h5>
-                        <p class="card-text">We are a growing initiative. With a bit of your help, we can increase the efficiency of your predictor, gather more data and thus help you better.<br><br><br></p>
-                        <a href="" class="btn btn-success">
-                          Support
-                          </a>
-                      </div>
-                </div>
-            </div>
-
-
-                  <div class="col-md-3 wow bounceInUp" data-wow-duration="1.4s">
-                      <div class="card">
-                          <figure class="text-center">
-                              <img src="https://source.unsplash.com/yfmjALh1S6s/940x650" class="img-fluid">
-                          </figure>
-                          <div class="card-body">
-                              <h5 class="card-title">Consult A Doctor</h5>
-                              <p class="card-text">Want to consult a doctor? Head over to the consult section to know about different doctors near your area.<br><br><br></p>
-                              <a href="" class="btn btn-success">
-                                Consult
-                                </a>
-                            </div>
-                      </div>
-                  </div>
-                  <div class="col-md-3 wow bounceInUp" data-wow-duration="1.4s">
-                    <div class="card">
-                        <figure class="text-center">
-                            <img src="https://source.unsplash.com/b7Es9ZMdORo/940x650" class="img-fluid">
-                        </figure>
-                        <div class="card-body">
-                            <h5 class="card-title">Predict Your Disease</h5>
-                            <p class="card-text">Worried about your ill health. Make use of our well trained ML base disease predictor to get an accurate knowledge of the possible disease you have.<br><br></p>
-                            <a href="" class="btn btn-success">
-                              Disease Predictor
-                              </a>
-                          </div>
-                    </div>
-                </div>
-
-                         
-                  
-              </div>
-          </div>
-      </section> -->
+    <div id="browse_vehicles">
+        <ol>
         {% for booking in bookings %}
-        <div class="">
-        {{booking.cost}} {{booking.status}}
-        {% endfor %}
+        <li>
+        <div class="jumbotron" style="width:80vw; position: relative;left:10vw; margin-top: 5vh; background-color: #ffe8bd; padding: 4vh; margin-top:50px;">
+            <h3>{{booking.vehicle.category}}</h3>
+            <img src='{{ MEDIA_URL }}{{booking.vehicle.pic}}' style="display: inline; margin-top:4vh; width: 25%; height: 30%"/>
+            <span style="display:inline; margin-left: 15px;"><h3 style="display:inline;">{{booking.vehicle.year}}</h3><h1 style="display:inline; font-size: 90px"> {{booking.vehicle.brand_name}} {{booking.vehicle.model_name}}</h1></span>  
+            <div style="position: absolute; left: 45%; top:37vh;">{{booking.vehicle.description}}</div>
+            <div style="margin-top: 5vh;">
+                <h4>Pick Up and Drop Off Address:</h4>
+                <p>{{booking.vehicle.owner.address}}</p>
+            </div>
+            <hr class="my-4">
+            <div style="font-size: 40px;"><span class="badge badge-pill badge-primary">{{booking.vehicle.km_driven}} kilometres driven</span></div>
+            <div style="font-size: 40px; margin-top: 5px;"><span class="badge badge-pill" style="background-color: #f5b642;">&#x20B9 {{booking.per_km_cost}}/km</span> <span class="badge badge-pill" style="background-color: #f5b642;">&#x20B9 {{booking.per_day_cost}}/day</span></div>
+            <div style="font-size: 40px; margin-top: 5px;"><span class="badge badge-pill" style="background-color:#3bff3e">Available from {{booking.start_date}} to {{booking.end_date}}</span></div>
+            <a class="btn btn-primary btn-lg" href="#" role="button" style="margin-top: 5vh; left:50%; transform:translate(-50%,0); position: relative;">Book Now</a>
         </div>
-    </main>
+        </li> 
+        {% endfor %}
+        </ol>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>

@@ -11,8 +11,10 @@ from .models import Person,Vehicle
 from django.views import generic
 from django.urls import reverse_lazy
 # Create your views here.
+@login_required(login_url='Login')
 def home(request):
-    bookings = Bookings.objects.all();
+    # bookings = Bookings.objects.all()
+    bookings = Bookings.objects.filter(status__exact='AVAILABLE').exclude(vehicle__owner__user=request.user)  
     return render(request,'home.html', {'bookings':bookings})
 
 def about(request):

@@ -31,6 +31,10 @@ class Vehicle(models.Model):
 	def __str__(self):
 		return self.model_name
 
+class Lendings(models.Model):
+	status=models.CharField(max_length=20,choices=[('Available','available','AVAILABLE'),('Booked', 'booked', 'BOOKED')])
+	
+
 class Bookings(models.Model):
 	status=models.CharField(max_length=20,choices=[('CANCELLED','Cancelled'),('COMPLETED','Completed'),('TOBECOMPLETED','ToBeCompleted')])
 	start_date=models.DateField()

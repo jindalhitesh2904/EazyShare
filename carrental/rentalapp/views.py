@@ -6,10 +6,11 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import CreateUserForm,AddVehicleForm
 from django.contrib import messages
-from .models import Person,Vehicle
+from .models import Person,Vehicle, Bookings
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    bookings = Bookings.objects.all();
+    return render(request,'home.html', {'bookings':bookings})
 
 def about(request):
     return render(request,'about.html')

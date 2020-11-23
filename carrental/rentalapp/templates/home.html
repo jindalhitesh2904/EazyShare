@@ -34,9 +34,9 @@ active
                                 <span class="wrap"></span> </p>
                         
                         </h1>
-                        <h3 class="subtitle-main wow fadeInUp" data-wow-duration="1.1s">Own a vehicle paying its per day/per km price</h3>
+                        <h3 class="subtitle-main wow fadeInUp" data-wow-duration="1.1s">Lend or rent a Vehicle</h3>
 						<div class="top-btn-block wow fadeInUp data-wow-duration="2.5s">
-							<a href="#overview" class="btn-explore ">Overview</a>
+							<a href="#browse_vehicles" class="btn-explore ">Browse Vehicles</a>
 							<a href="{% url 'add_vehicle' %}" class="btn btn-outline-success btn-account ">Add a Vehicle</a>
 						</div>
                     </div>
@@ -46,8 +46,8 @@ active
         </div>
        
     </header>
-    <main>
-        <section class="overview-wrap" id="overview">
+    <main id="browse_vehicles">
+        <!-- <section class="overview-wrap">
             <div class="container">
                 <div class="contenedor">
                     <h2 class="title-overview wow fadeInUp">Overview</h2>
@@ -118,11 +118,12 @@ active
                   
               </div>
           </div>
-      </section>
-	
-
-      
-
+      </section> -->
+        {% for booking in bookings %}
+        <div class="">
+        {{booking.cost}} {{booking.status}}
+        {% endfor %}
+        </div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>

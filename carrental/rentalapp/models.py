@@ -31,17 +31,34 @@ class Vehicle(models.Model):
 	def __str__(self):
 		return self.model_name
 
-class Lendings(models.Model):
-	status=models.CharField(max_length=20,choices=[('Available','available','AVAILABLE'),('Booked', 'booked', 'BOOKED')])
-	
+# class Lendings(models.Model):
+# 	status=models.CharField(max_length=20,choices=[('Available','available','AVAILABLE'),('Booked', 'booked', 'BOOKED')])
+# 	lender=models.OneToOneField(Person,null=True,on_delete=models.CASCADE,related_name='+')
+# 	per_km_cost=models.PositiveIntegerField(default=12)
+# 	per_day_cost=models.PositiveIntegerField(default=500)
+# 	availability_start_date=models.DateField()
+# 	availability_end_date=models.DateField(null=True)
+# 	booking_id = models.OneToOneField(Booking, null=True)
 
 class Bookings(models.Model):
-	status=models.CharField(max_length=20,choices=[('CANCELLED','Cancelled'),('COMPLETED','Completed'),('TOBECOMPLETED','ToBeCompleted')])
+	status=models.CharField(max_length=20,choices=[('CANCELLED','Cancelled'),('COMPLETED','Completed'),('BOOKED','Booked'),('Available','AVAILABLE')])
 	start_date=models.DateField()
 	end_date=models.DateField()
-	km_drove=models.IntegerField()
+	per_km_cost=models.PositiveIntegerField(default=12)
+	per_day_cost=models.PositiveIntegerField(default=500)
+	km_drove=models.IntegerField(null=True)
 	cost=models.IntegerField()
 	borrower=models.OneToOneField(Person,null=True,on_delete=models.CASCADE)
 	lender=models.OneToOneField(Person,null=True,on_delete=models.CASCADE,related_name='+')
-	vehicle=models.OneToOneField(Vehicle,on_delete=models.CASCADE)	
+	vehicle=models.OneToOneField(Vehicle,on_delete=models.CASCADE)
+
+# class Bookings(models.Model):
+# 	status=models.CharField(max_length=20,choices=[('CANCELLED','Cancelled'),('COMPLETED','Completed'),('TOBECOMPLETED','ToBeCompleted')])
+# 	start_date=models.DateField()
+# 	end_date=models.DateField()
+# 	km_drove=models.IntegerField()
+# 	cost=models.IntegerField()
+# 	borrower=models.OneToOneField(Person,null=True,on_delete=models.CASCADE)
+# 	lender=models.OneToOneField(Person,null=True,on_delete=models.CASCADE,related_name='+')
+# 	vehicle=models.OneToOneField(Vehicle,on_delete=models.CASCADE)	
 	

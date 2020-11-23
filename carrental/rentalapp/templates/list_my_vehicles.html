@@ -1,0 +1,18 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+My Vehicles
+{% endblock %}
+
+{% block content %}
+<div style="margin-top: 100px">
+    {% for vehicle in vehicles_list %}
+    <ul>
+        <a href="">{{ vehicle.model_name }}</a>
+    </ul>
+    
+    {% endfor %}
+</div>
+   
+
+{% endblock %}

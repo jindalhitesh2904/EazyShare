@@ -1,0 +1,26 @@
+{% extends 'basic.html' %}
+{% block title %}
+Edit Profile
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+
+<form class="signup" method="POST" style="margin-top: 100px" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+
+    {% if form.errors%}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <p>{{ form.errors}}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {%endif%}
+    <button type="submit">Save Changes</button>
+  </form>
+
+  {% endblock %}

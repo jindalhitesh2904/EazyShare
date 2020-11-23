@@ -12,7 +12,7 @@ class Person(models.Model):
 	phone=PhoneNumberField(null=True)
 	address=models.TextField(max_length=250,default="None")
 	age=models.IntegerField(null=True)
-	profile_pic=models.ImageField(upload_to='images',default="images/iitbhu.png")
+	profile_pic=models.ImageField(upload_to='static/images',default="static/images/iitbhu.png")
 	def __str__(self):
 		return self.first_name+self.last_name
 
@@ -25,14 +25,14 @@ class Vehicle(models.Model):
 	category=models.CharField(max_length=20,choices=[('Car','Car'),('Scooty','Scooty'),('Motorbike','Motorbike')])
 	km_driven=models.PositiveIntegerField()
 
-	pic=models.ImageField(upload_to='images',default="images/iitbhu.png")
+	pic=models.ImageField(upload_to='./static/images',default="/static/images/iitbhu.png")
 
 	owner=models.ForeignKey(Person,on_delete=models.CASCADE)
 	def __str__(self):
 		return self.model_name
 
-class Lendings(models.Model):
-	status=models.CharField(max_length=20,choices=[('Available','available','AVAILABLE'),('Booked', 'booked', 'BOOKED')])
+## class Lendings(models.Model):
+	## status=models.CharField(max_length=20,choices=[('Available','available','AVAILABLE'),('Booked', 'booked', 'BOOKED')])
 	
 
 class Bookings(models.Model):

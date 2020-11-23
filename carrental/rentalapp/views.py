@@ -4,9 +4,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
-from .forms import CreateUserForm,AddVehicleForm
+from .forms import CreateUserForm,AddVehicleForm,EditProfileForm
 from django.contrib import messages
 from .models import Person,Vehicle
+from django.views import generic
+from django.urls import reverse_lazy
 # Create your views here.
 def home(request):
     return render(request,'home.html')
@@ -89,3 +91,19 @@ def add_vehicle(request):
             return redirect('Home')
     form=AddVehicleForm()
     return render(request,'add_vehicle.html',{'form':form})
+
+class ListMyVehicles(generic.ListView):
+    template_name='list_my_vehicles.html'
+    context_object_name='vehicles_list'
+
+    def get_queryset(self):
+        return Vehicle.objects.filter(owner__user=self.request.user)
+    
+
+class EditProfile(generic.UpdateView):
+    form_class=EditProfileForm
+    template_name='edit_profile.html'
+    success_url=reverse_lazy('Home')
+
+    def get_object(self):
+        return Person.objects.filter(user=self.request.user)[0]

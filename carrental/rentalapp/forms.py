@@ -22,3 +22,8 @@ class AddVehicleForm(forms.Form):
         model=Vehicle
         exclude=['owner']
         # fields=['brand_name','model_name','registration_number','year','description','category','km_driven','pic',]
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model=Person
+        exclude=['owner']

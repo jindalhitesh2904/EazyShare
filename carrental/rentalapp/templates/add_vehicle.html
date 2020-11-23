@@ -1,9 +1,60 @@
 {% extends 'basic.html' %}
-
 {% block content %}
-<form action="" style="margin-top:100px" method="POST">
-    {% csrf_token %}
-    <input type="text" id="brand_name" name="brand_name">
+<div style="width: 55vw; left: 50%; position: relative;  top: 16.5vh; transform: translate(-50%,0); background-color:#fcf0dc; padding: 30px 20px; border-radius: 3%;">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p class="h2 mb-4">Add A Vehicle</p>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="brand_name">Enter Brand Name:</label>
+            <input type="text" class="form-control" id="brand_name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="model_name">Enter Model Name:</label>
+            <input type="text" class="form-control" id="model_name">
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="registration_number">Enter Registration Number:</label>
+              <input type="text" class="form-control" id="registration_number">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="year">Enter Model Year:</label>
+                <input type="text" class="form-control" id="year">
+              </div>
+            <div class="form-group col-md-3">
+              <label for="category">Enter Category:</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Car</option>
+                    <option>Scooty</option>
+                    <option>Motorbike</option>
+                </select>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" class="form-control" id="description" placeholder="Tell potential customers something about your vehicle">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="km_driven">Enter Distance Driven(km):</label>
+              <input type="number" class="form-control" id="km_driven">
+            </div>
+            <div class="form-group col-md-8">
+              <label for="pic">Enter Vehicle Image:</label>
+              <input type="file" class="form-control-file" id="pic" accept="image/*">
+            </div>
+          </div>
+        <button type="submit" class="btn btn-primary" style="left: 50%; transform: translateX(-50%); position: relative;">Add Vehicle</button>
+      </form>
+</div>
+<!-- Default form contact -->
+
+{% endblock %}
+
+<!-- <form action="" style="margin-top:100px; width: ;" method="POST"> -->
+    <!-- <input type="text" id="brand_name" name="brand_name">
     <input type="text" id="model_name" name="model_name">
     <input type="text" id="registration_number" name="registration_number">
     <input type="number" id="year" name="year">
@@ -16,6 +67,5 @@
     <input type="number" id="km_driven" name="km_driven">
     <input type="file" id="pic" name="pic" accept="image/*">
     <input type="submit" value="Submit">
-</form>
-
-{% endblock %}
+</form> -->
+<!-- Default form contact -->

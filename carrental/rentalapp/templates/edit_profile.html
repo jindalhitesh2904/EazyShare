@@ -9,8 +9,8 @@ Edit Profile
 
 <form class="signup" method="POST" style="margin-top: 100px" action="">
     {% csrf_token %}
-    {{ form.as_p }}
-
+    {{ form.as_table }}
+    <!-- <div style="background-color: bisque;">{{form.first_name}}</div> -->
 
     {% if form.errors%}
     <div class="alert alert-danger alert-dismissible fade show" role="alert">

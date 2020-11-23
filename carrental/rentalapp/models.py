@@ -43,3 +43,4 @@ class Bookings(models.Model):
 	borrower=models.ForeignKey(Person,null=True,on_delete=models.CASCADE)
 	lender=models.ForeignKey(Person,null=True,on_delete=models.CASCADE,related_name='+')
 	vehicle=models.ForeignKey(Vehicle,on_delete=models.CASCADE)
+

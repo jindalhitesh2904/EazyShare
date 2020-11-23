@@ -101,8 +101,9 @@ class ListMyVehicles(generic.ListView):
     
 
 class EditProfile(generic.UpdateView):
-    form_class=EditProfileForm
+    model=Person
     template_name='edit_profile.html'
+    fields=['first_name','last_name','profile_pic','email','phone','address','age']
     success_url=reverse_lazy('Home')
 
     def get_object(self):

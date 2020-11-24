@@ -79,14 +79,14 @@ def add_vehicle(request):
         if form.is_valid():
             print(request.user)
             vehicle=Vehicle(
-                brand_name=request.POST['brand_name'],
-                model_name=request.POST['model_name'],
-                registration_number=request.POST['registration_number'],
-                year=request.POST['year'],
-                description=request.POST['description'],
-                category=request.POST['category'],
-                km_driven=request.POST['km_driven'],
-                pic=request.POST['pic'],
+                brand_name=request.POST.get('brand_name', 'XXXXX'),
+                model_name=request.POST.get('model_name'),
+                registration_number=request.POST.get('registration_number'),
+                year=request.POST.get('year', '2020'),
+                description=request.POST.get('description', 'This is a good vehicle'),
+                category=request.POST.get('category', 'Car'),
+                km_driven=request.POST.get('km_driven', '1000'),
+                pic=request.POST.get('pic'),
                 owner=Person.objects.filter(user=request.user)[0]
             )
             vehicle.save()
@@ -138,6 +138,7 @@ def CreateBooking(request,vehicle_id):
     form=CreateBookingForm()
     return render(request,'bookings_form.html',{'form':form})
 
+@login_required(login_url='Login')
 def BookBooking(request,booking_id):
     booking=Bookings.objects.get(id=booking_id)
     booking.status='BOOKED'
@@ -146,10 +147,12 @@ def BookBooking(request,booking_id):
     messages.success(request,'Booking done')
     return redirect('Home')
 
+@login_required(login_url='Login')
 def MyBorrowings(request):
     borrowings=Bookings.objects.filter(status__exact='BOOKED',borrower=Person.objects.filter(user=request.user)[0])
     return render(request,'my_borrowings.html',{'borrowings':borrowings})
 
+@login_required(login_url='Login')
 def EndBooking(request,borrowing_id):
     if request.method=="POST":
         borrowing=Bookings.objects.get(id=borrowing_id)
@@ -162,6 +165,12 @@ def EndBooking(request,borrowing_id):
         return redirect('my_borrowings')
     return render(request,'end_booking.html')
 
+@login_required(login_url='Login')
 def ViewProfile(request,username):
     profile=Person.objects.get(user__username=username)
     return render(request,'view_profile.html',{'profile':profile})
+
+@login_required(login_url='Login')
+def MyLendings(request):
+    lendings=Bookings.objects.filter(lender=Person.objects.filter(user=request.user)[0])
+    return render(request,'my_lendings.html',{'lendings':lendings})

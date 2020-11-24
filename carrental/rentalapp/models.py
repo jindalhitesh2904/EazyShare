@@ -33,14 +33,17 @@ class Vehicle(models.Model):
 		return self.model_name
 
 class Bookings(models.Model):
-	status=models.CharField(max_length=20,choices=[('COMPLETED','COMPELETED'),('BOOKED','BOOKED'),('AVAILABLE','AVAILABLE')])
-	start_date=models.DateField()
-	end_date=models.DateField()
+	status=models.CharField(max_length=20,choices=[('COMPLETED','COMPELETED'),('BOOKED','BOOKED'),('AVAILABLE','AVAILABLE')], default='AVAILABLE')
+	start_date=models.DateField(null=True)
+	end_date=models.DateField(null=True)
 	per_km_cost=models.PositiveIntegerField(default=12)
 	per_day_cost=models.PositiveIntegerField(default=500)
 	km_drove=models.IntegerField(null=True)
-	cost=models.IntegerField()
+	cost=models.IntegerField(null=True)
 	borrower=models.ForeignKey(Person,null=True,on_delete=models.CASCADE)
-	lender=models.ForeignKey(Person,null=True,on_delete=models.CASCADE,related_name='+')
+	lender=models.ForeignKey(Person,on_delete=models.CASCADE,related_name='+')
 	vehicle=models.ForeignKey(Vehicle,on_delete=models.CASCADE)
-
+	def __str__(self):
+		if self.id == None:
+			return 'ABCD'
+		return str(self.id)

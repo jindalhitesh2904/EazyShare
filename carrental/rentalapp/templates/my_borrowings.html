@@ -8,7 +8,8 @@ My Borrowings
 {% block content %}
 
 {% for borrowing in borrowings %}
-<li>{{ borrowing.start_date}} to {{borrowing.end_date}}</li>
+<li style="color: yellow; position: absolute; top: 30%;">{{ borrowing.start_date}} to {{borrowing.end_date}} Hello@@@@@@</li>
 <a href="{% url 'end_booking' borrowing.id %}"></a>
+<div>Hello World</div>
 {% endfor %}
 {% endblock %}

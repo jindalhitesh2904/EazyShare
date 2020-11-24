@@ -60,10 +60,11 @@ active
                 <p>{{booking.vehicle.owner.address}}</p>
             </div>
             <hr class="my-4">
+            <a href="{% url 'view_profile' booking.vehicle.owner.user.username %}" style="margin-bottom: 8px; font-size: 20px;"> View Owner Profile</a>
             <div style="font-size: 40px;"><span class="badge badge-pill badge-primary">{{booking.vehicle.km_driven}} kilometres driven</span></div>
             <div style="font-size: 40px; margin-top: 5px;"><span class="badge badge-pill" style="background-color: #f5b642;">&#x20B9 {{booking.per_km_cost}}/km</span> <span class="badge badge-pill" style="background-color: #f5b642;">&#x20B9 {{booking.per_day_cost}}/day</span></div>
             <div style="font-size: 40px; margin-top: 5px;"><span class="badge badge-pill" style="background-color:#3bff3e">Available from {{booking.start_date}} to {{booking.end_date}}</span></div>
-            <a class="btn btn-primary btn-lg" href="#" role="button" style="margin-top: 5vh; left:50%; transform:translate(-50%,0); position: relative;">Book Now</a>
+            <a class="btn btn-primary btn-lg" href="{% url 'book_booking' booking.id %}" role="button" style="margin-top: 5vh; left:50%; transform:translate(-50%,0); position: relative;">Book Now</a>
         </div>
         </li> 
         {% endfor %}

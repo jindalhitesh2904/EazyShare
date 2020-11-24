@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from .views import home,about,contact,sign_up,signin,logoutUser,book_vehicle,add_vehicle,ListMyVehicles,EditProfile,CreateBooking,BookBooking,MyBorrowings,EndBooking
-from .views import ViewProfile
+from .views import ViewProfile, MyLendings
 urlpatterns = [
 	path('', views.home,name = 'Home'),
     path('about',views.about,name='About'),
@@ -18,4 +18,5 @@ urlpatterns = [
     path('my_borrowings',MyBorrowings,name='my_borrowings'),
     path('end_booking/<slug:borrowing_id>/',EndBooking,name='end_booking'),
     path('view_profile/<slug:username>/',ViewProfile,name='view_profile'),
+    path('my_lendings', MyLendings, name='my_lendings')
 ]

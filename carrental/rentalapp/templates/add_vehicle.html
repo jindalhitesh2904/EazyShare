@@ -7,25 +7,25 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="brand_name">Enter Brand Name:</label>
-            <input type="text" class="form-control" id="brand_name">
+            <input type="text" class="form-control" id="brand_name" name="brand_name">
           </div>
           <div class="form-group col-md-6">
             <label for="model_name">Enter Model Name:</label>
-            <input type="text" class="form-control" id="model_name">
+            <input type="text" class="form-control" id="model_name" name="model_name">
           </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-5">
               <label for="registration_number">Enter Registration Number:</label>
-              <input type="text" class="form-control" id="registration_number">
+              <input type="text" class="form-control" id="registration_number" name="registration_number">
             </div>
             <div class="form-group col-md-4">
                 <label for="year">Enter Model Year:</label>
-                <input type="text" class="form-control" id="year">
+                <input type="number" class="form-control" id="year" name="year">
               </div>
             <div class="form-group col-md-3">
               <label for="category">Enter Category:</label>
-                <select id="inputState" class="form-control">
+                <select id="inputState" class="form-control" name="category">
                     <option selected>Car</option>
                     <option>Scooty</option>
                     <option>Motorbike</option>
@@ -34,16 +34,16 @@
           </div>
         <div class="form-group">
           <label for="description">Description:</label>
-          <input type="text" class="form-control" id="description" placeholder="Tell potential customers something about your vehicle">
+          <input type="text" class="form-control" id="description" placeholder="Tell potential customers something about your vehicle" name="description">
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
               <label for="km_driven">Enter Distance Driven(km):</label>
-              <input type="number" class="form-control" id="km_driven">
+              <input type="number" class="form-control" id="km_driven" name="km_driven">
             </div>
             <div class="form-group col-md-8">
               <label for="pic">Enter Vehicle Image:</label>
-              <input type="file" class="form-control-file" id="pic" accept="image/*">
+              <input type="file" class="form-control-file" id="pic" accept="image/*" name="pic">
             </div>
           </div>
         <button type="submit" class="btn btn-primary" style="left: 50%; transform: translateX(-50%); position: relative;">Add Vehicle</button>

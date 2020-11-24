@@ -1,0 +1,15 @@
+{% extends 'basic.html' %}
+{% block title %}
+My Lendings
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+
+{% load widget_tweaks %}
+{% for lending in lendings %}
+{{ lending.start_date }} to {{ lending.end_date }}
+{% endfor %}
+
+{% endblock %}

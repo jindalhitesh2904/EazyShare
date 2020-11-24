@@ -1,0 +1,15 @@
+{% extends 'basic.html' %}
+{% block title %}
+End Booking
+{% endblock %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% load static %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="km_drove">KM Drove</label>
+    <input type="number" placeholder="enter the km driven" name="km_drove" id="km_drove">
+</form>
+{% endblock %}

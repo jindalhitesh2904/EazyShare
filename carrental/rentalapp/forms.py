@@ -2,7 +2,7 @@ from django import forms
 from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Person,Vehicle
+from .models import Person,Vehicle,Bookings
 
 class CreateUserForm(UserCreationForm):
     first_name=forms.CharField(max_length=100)
@@ -27,3 +27,8 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model=Person
         exclude=['owner']
+
+class CreateBookingForm(forms.Form):
+    class Meta:
+        model=Bookings
+        fields=['start_date','end_date','per_km_cost','per_day_cost']

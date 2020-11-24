@@ -9,6 +9,7 @@ My Vehicles
     {% for vehicle in vehicles_list %}
     <ul>
         <a href="">{{ vehicle.model_name }}</a>
+        <a href="{% url 'create_booking' vehicle.id %}">Create Booking</a>
     </ul>
     
     {% endfor %}

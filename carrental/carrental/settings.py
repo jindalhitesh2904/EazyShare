@@ -83,15 +83,13 @@ WSGI_APPLICATION = 'carrental.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eazyshare_database',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': 'root',
-    }
+DATABASES = {	
+    'default': {	   
+        'ENGINE': 'django.db.backends.mysql',	       
+        'OPTIONS': {	        
+            'read_default_file': '/etc/mysql/my.cnf',	       
+        },	       
+    }	    
 }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

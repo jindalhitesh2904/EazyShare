@@ -1,0 +1,15 @@
+{% extends 'basic.html' %}
+{% block title %}
+Create Booking
+{% endblock %}
+
+{%block content %}
+    <form action="" method="POST" style="margin-top:100px">
+        {% csrf_token %}
+        <input type="date" name="start_date">
+        <input type="date" name="end_date">
+        <input type="number" name="per_day_cost">
+        <input type="number" name="per_km_cost">
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

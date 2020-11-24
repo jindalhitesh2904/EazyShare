@@ -1,0 +1,14 @@
+{% extends 'basic.html' %}
+
+{%block title%}
+My Borrowings
+{%endblock title%}
+
+
+{% block content %}
+
+{% for borrowing in borrowings %}
+<li>{{ borrowing.start_date}} to {{borrowing.end_date}}</li>
+<a href="{% url 'end_booking' borrowing.id %}"></a>
+{% endfor %}
+{% endblock %}

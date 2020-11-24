@@ -4,12 +4,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
-from .forms import CreateUserForm,AddVehicleForm,EditProfileForm
+from .forms import CreateUserForm,AddVehicleForm,EditProfileForm,CreateBookingForm
 from django.contrib import messages
 from .models import Person,Vehicle, Bookings
-from .models import Person,Vehicle
 from django.views import generic
 from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 # Create your views here.
 @login_required(login_url='Login')
 def home(request):
@@ -102,7 +102,6 @@ class ListMyVehicles(generic.ListView):
 
     def get_queryset(self):
         return Vehicle.objects.filter(owner__user=self.request.user)
-    
 
 class EditProfile(generic.UpdateView):
     model=Person
@@ -112,3 +111,57 @@ class EditProfile(generic.UpdateView):
 
     def get_object(self):
         return Person.objects.filter(user=self.request.user)[0]
+
+# class EditVehicle(generic.UpdateView):
+#     model=Person
+#     template_name='edit_vehicle.html'
+#     fields=['brand_name','model_name','registration_number','year','description','category','km_drive','pic']
+#     success_url=reverse_lazy('Home')
+
+@login_required(login_url='Login')
+def CreateBooking(request,vehicle_id):
+    if request.method=="POST":
+        form=CreateBookingForm(request.POST)
+        if form.is_valid():
+            booking=Bookings(
+                status='AVAILABLE',
+                start_date=request.POST['start_date'],
+                end_date=request.POST['end_date'],
+                per_km_cost=request.POST['per_km_cost'],
+                per_day_cost=request.POST['per_day_cost'],
+                cost='0',
+                lender=Person.objects.filter(user=request.user)[0],
+                vehicle=Vehicle.objects.get(id=vehicle_id),
+            )
+            booking.save()
+            return redirect('Home')
+    form=CreateBookingForm()
+    return render(request,'bookings_form.html',{'form':form})
+
+def BookBooking(request,booking_id):
+    booking=Bookings.objects.get(id=booking_id)
+    booking.status='BOOKED'
+    booking.borrower=Person.objects.filter(user=request.user)[0]
+    booking.save()
+    messages.success(request,'Booking done')
+    return redirect('Home')
+
+def MyBorrowings(request):
+    borrowings=Bookings.objects.filter(status__exact='BOOKED',borrower=Person.objects.filter(user=request.user)[0])
+    return render(request,'my_borrowings.html',{'borrowings':borrowings})
+
+def EndBooking(request,borrowing_id):
+    if request.method=="POST":
+        borrowing=Bookings.objects.get(id=borrowing_id)
+        borrowing.status='COMPLETED'
+        days=borrowing.end_date-borrowing.start_date+1
+        borrowing.km_drove=request.POST['km_drove']
+        borrowing.cost=max(km_drove*borrowing.cost_per_km,days*borrowing.cost_per_day)
+        borrowing.save()
+        # alert("pay"+borrowing.borrower+borrowing.cost+"rupees")
+        return redirect('my_borrowings')
+    return render(request,'end_booking.html')
+
+def ViewProfile(request,username):
+    profile=Person.objects.get(user__username=username)
+    return render(request,'view_profile.html',{'profile':profile})

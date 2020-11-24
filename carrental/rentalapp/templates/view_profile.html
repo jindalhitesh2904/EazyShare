@@ -1,0 +1,16 @@
+{% extends 'basic.html' %}
+{% block title %}
+Edit Profile
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+{% if user.username == profile.user.username %}
+<div style="margin-top: 100px">
+    {{ profile.first_name }}
+    <a href="{% url 'edit_profile' %}">Edit</a>
+</div>
+
+{% endif %}
+{% endblock %}

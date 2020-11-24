@@ -7,20 +7,27 @@ Edit Profile
 {% block content %}
 {% load static %}
 
-<form class="signup" method="POST" style="margin-top: 100px" action="">
-    {% csrf_token %}
-    {{ form.as_table }}
-    <!-- <div style="background-color: bisque;">{{form.first_name}}</div> -->
+{% load widget_tweaks %}
+<div>
+  <div style="width: 50vw; left: 50%; transform: translate(-50%,0); position: absolute; background-color: white; padding: 10px 20px; top: 15%;border-radius: 2%;">
+    <form class="signup" method="POST" style="margin-top: 20px; border-radius: 5px; margin-bottom: 20px;" action="">
+      {% csrf_token %}
 
-    {% if form.errors%}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <p>{{ form.errors}}</p>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    {%endif%}
-    <button type="submit">Save Changes</button>
-  </form>
+      {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field }}
+      {% endfor %}
 
-  {% endblock %}
+      {% for field in form.visible_fields %}
+        <div class="form-group">
+          {{ field.label_tag }}
+          {% render_field field class="form-control" %}
+          {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary" style="left: 50%; transform: translate(-50%,0); position: relative;">Save Changes</button>
+    </form>
+  </div>
+</div>  
+{% endblock %}

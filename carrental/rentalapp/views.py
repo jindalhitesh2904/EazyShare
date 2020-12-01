@@ -10,6 +10,7 @@ from .models import Person,Vehicle, Bookings
 from django.views import generic
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
+from datetime import date
 # Create your views here.
 @login_required(login_url='Login')
 def home(request):
@@ -162,8 +163,9 @@ def EndBooking(request,borrowing_id):
         borrowing.cost=max(km_drove*borrowing.cost_per_km,days*borrowing.cost_per_day)
         borrowing.save()
         # alert("pay"+borrowing.borrower+borrowing.cost+"rupees")
+        print(borrowing.cost)
         return redirect('my_borrowings')
-    return render(request,'end_booking.html')
+    return redirect('Home')
 
 @login_required(login_url='Login')
 def ViewProfile(request,username):

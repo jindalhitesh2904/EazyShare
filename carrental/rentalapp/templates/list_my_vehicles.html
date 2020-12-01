@@ -5,13 +5,20 @@ My Vehicles
 {% endblock %}
 
 {% block content %}
-<div style="margin-top: 100px">
+<h1 style=" position: absolute; top: 17%; left: 40%;color: white; font-size: 40px;">Your Vehicles</h1>
+<div style="margin-top: 200px">
     {% for vehicle in vehicles_list %}
-    <ul>
-        <a href="">{{ vehicle.model_name }}</a>
-        <a href="{% url 'create_booking' vehicle.id %}">Create Booking</a>
-    </ul>
-    
+    <div class="jumbotron" style="width:80vw; position: relative;left:10vw; margin-top: 5vh; background-color: #ffe8bd; padding: 4vh; margin-top:50px; max-height: 80vh;">
+        <h3>{{vehicle.category}}</h3>
+        <img src='{{ MEDIA_URL }}{{vehicle.pic}}' style="display: inline; margin-top:4vh; max-width: 30v; max-height: 25vh; width: auto;"/>
+        <span style="display:inline; margin-left: 15px; top: 0vh; position: relative;"><h3 style="display:inline;">{{vehicle.year}}</h3><h1 style="display:inline; font-size: 70px"> {{vehicle.brand_name}} {{vehicle.model_name}}</h1></span>  
+        <div style="position: relative; left: 45%; top:-5vh; width: 50%; height: 20%;">{{vehicle.description}}</div>
+        <hr class="my-4">
+        <div style="font-size: 40px;">
+            <span class="badge badge-pill badge-primary">{{vehicle.km_driven}} kilometres driven</span>
+            <a href="{% url 'create_booking' vehicle.id %}" style="margin-bottom: 8px; font-size: 25px; float: right;">Create Booking</a>
+        </div>
+    </div>
     {% endfor %}
 </div>
    

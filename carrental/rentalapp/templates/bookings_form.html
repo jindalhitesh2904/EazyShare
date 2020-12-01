@@ -4,12 +4,31 @@ Create Booking
 {% endblock %}
 
 {%block content %}
-    <form action="" method="POST" style="margin-top:100px">
         {% csrf_token %}
-        <input type="date" name="start_date">
-        <input type="date" name="end_date">
-        <input type="number" name="per_day_cost">
-        <input type="number" name="per_km_cost">
-        <button type="submit">Submit</button>
-    </form>
+    <div style="width: 55vw; left: 50%; position: relative;  top: 16.5vh; transform: translate(-50%,0); background-color:#fcf0dc; padding: 30px 20px; border-radius: 3%;">
+        <form action="" method="POST" style="margin-top:20px">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="start_date">Enter Start Date:</label>
+                <input type="date" name="start_date">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="start_date">Enter End Date:</label>
+                <input type="date" name="end_date">
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="per_km_cost">Enter per Kilometer Cost:</label>
+                  <input type="number" name="per_km_cost">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="per_day_cost">Enter per Day Cost:</label>
+                    <input type="number" name="per_day_cost">
+                  </div>
+              </div>
+            <button type="submit" class="btn btn-primary" style="left: 50%; transform: translateX(-50%); position: relative;">Add Lending</button>
+          </form>
+    </div>
 {% endblock %}

@@ -52,15 +52,14 @@ active
         <li>
         <div class="jumbotron" style="width:80vw; position: relative;left:10vw; margin-top: 5vh; background-color: #ffe8bd; padding: 4vh; margin-top:50px;">
             <h3>{{booking.vehicle.category}}</h3>
-            <img src='{{ MEDIA_URL }}{{booking.vehicle.pic}}' style="display: inline; margin-top:4vh; max-width: 30%; height: 30%; width: auto;"/>
-            <span style="display:inline; margin-left: 15px; top: 0vh; position: relative;"><h3 style="display:inline;">{{booking.vehicle.year}}</h3><h1 style="display:inline; font-size: 90px"> {{booking.vehicle.brand_name}} {{booking.vehicle.model_name}}</h1></span>  
+            <img src='{{ MEDIA_URL }}{{booking.vehicle.pic}}' style="display: inline; margin-top:4vh; max-width: 30%; max-height: 30%; width: auto;"/>
+            <span style="display:inline; margin-left: 15px; top: 0vh; position: relative;"><h3 style="display:inline;">{{booking.vehicle.year}}</h3><h1 style="display:inline; font-size: 70px"> {{booking.vehicle.brand_name}} {{booking.vehicle.model_name}}</h1></span>  
             <div style="position: relative; left: 45%; top:-5vh; width: 50%; height: 20%;">{{booking.vehicle.description}}</div>
             <div style="margin-top: 5vh;">
                 <h4>Pick Up and Drop Off Address:</h4>
                 <p>{{booking.vehicle.owner.address}}</p>
             </div>
             <hr class="my-4">
-            <a href="{% url 'view_profile' booking.vehicle.owner.user.username %}" style="margin-bottom: 8px; font-size: 20px;"> View Owner Profile</a>
             <div style="font-size: 40px;"><span class="badge badge-pill badge-primary">{{booking.vehicle.km_driven}} kilometres driven</span></div>
             <div style="font-size: 40px; margin-top: 5px;"><span class="badge badge-pill" style="background-color: #f5b642;">&#x20B9 {{booking.per_km_cost}}/km</span> <span class="badge badge-pill" style="background-color: #f5b642;">&#x20B9 {{booking.per_day_cost}}/day</span></div>
             <div style="font-size: 40px; margin-top: 5px;"><span class="badge badge-pill" style="background-color:#3bff3e">Available from {{booking.start_date}} to {{booking.end_date}}</span></div>

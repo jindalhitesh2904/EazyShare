@@ -6,10 +6,10 @@ My Borrowings
 
 
 {% block content %}
-
+<div class="color: yellow; position: absolute; top: 30%;"
 {% for borrowing in borrowings %}
-<li style="color: yellow; position: absolute; top: 30%;">{{ borrowing.start_date}} to {{borrowing.end_date}} Hello@@@@@@</li>
-<a href="{% url 'end_booking' borrowing.id %}"></a>
-<div>Hello World</div>
+<li>{{borrowing.vehicle.model_name}} {{borrowing.vehicle.model_name}} booked from {{ borrowing.start_date}} to {{borrowing.end_date}}</li>
+<a href="{% url 'end_booking' borrowing.id %}" style="color: yellow; position: absolute; top: 40%;">End Booking</a>
 {% endfor %}
+</div>
 {% endblock %}

@@ -10,7 +10,7 @@ Edit Profile
 {% load widget_tweaks %}
 <div>
   <div style="width: 50vw; left: 50%; transform: translate(-50%,0); position: absolute; background-color: white; padding: 10px 20px; top: 15%;border-radius: 2%;">
-    <form class="signup" method="POST" style="margin-top: 20px; border-radius: 5px; margin-bottom: 20px;" action="">
+    <form class="signup" method="POST" style="margin-top: 20px; border-radius: 5px; margin-bottom: 20px;" action="" enctype="multipart/form-data">
       {% csrf_token %}
 
       {% for hidden_field in form.hidden_fields %}

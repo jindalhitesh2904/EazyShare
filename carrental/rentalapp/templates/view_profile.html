@@ -6,7 +6,7 @@ Edit Profile
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{%static 'css/view_profile.css'%}">
+<link rel="stylesheet" href="/static/css/view_profile.css">
 {% if user.username == profile.user.username %}
 <div style="margin-top: 100px">
     <a href="{% url 'edit_profile' %}" style="position: absolute; left: 63% ; color: #070f78; width: 80px; height: 35px; border-radius: 15px; font-size: 15px;" class="btn btn-light" role="button">Edit</a>

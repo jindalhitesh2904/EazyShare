@@ -91,7 +91,10 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '0000',
+	'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        },
     }
 }
 # Password validation
@@ -132,13 +135,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-    
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'assets/css'),
+    os.path.join(BASE_DIR,'assets/js'),
+    os.path.join(BASE_DIR,'assets/images'),
+]
 
-MEDIA_ROOT= os.path.join(BASE_DIR, "media")
-MEDIA_URL="/media/"
+MEDIA_URL='/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = '/carrent/'
 # LOGIN_URL = 'login'

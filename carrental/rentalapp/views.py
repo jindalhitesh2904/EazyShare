@@ -76,7 +76,7 @@ def book_vehicle(request):
 @login_required(login_url='Login')
 def add_vehicle(request):
     if request.method == 'POST':
-        form=AddVehicleForm(request.POST)
+        form=AddVehicleForm(request.POST,request.FILES)
         if form.is_valid():
             print(request.user)
             vehicle=Vehicle(
@@ -87,7 +87,7 @@ def add_vehicle(request):
                 description=request.POST.get('description', 'This is a good vehicle'),
                 category=request.POST.get('category', 'Car'),
                 km_driven=request.POST.get('km_driven', '1000'),
-                pic=request.POST.get('pic'),
+                pic=request.FILES.get('pic'),
                 owner=Person.objects.filter(user=request.user)[0]
             )
             vehicle.save()
@@ -100,7 +100,6 @@ def add_vehicle(request):
 class ListMyVehicles(generic.ListView):
     template_name='list_my_vehicles.html'
     context_object_name='vehicles_list'
-
     def get_queryset(self):
         return Vehicle.objects.filter(owner__user=self.request.user)
 
